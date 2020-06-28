@@ -1,29 +1,24 @@
 /*
-
-    Game Project Submission Midterm
-    
-    ----
-    
-    The game character draw code as well as the background insertions have been moved to their own functions.
-    The colour choices as well as the game character design are mine, and I hereby apologise for any ugliness/
-    lack of artistic talent. 
-    
-    ----
-    
-    (Anita Pal / hedonistic.opportunist@gmail.com)
+Game Project Submission Midterm
 */
 
-/*game character positions */
+/*
+game character positions
+*/
 var gameChar_x;
 var gameChar_y;
 var floorPos_y;
 var scrollPos;
 
-/*game character directions*/
+/*
+game character direction
+*/
 var isLeft;
 var isRight;
 
-/*game objects*/
+/*
+game objects
+*/
 var clouds;
 var mountains;
 var trees;
@@ -31,8 +26,10 @@ var trees;
 var canyons;
 var collectibles;
 
-/* variables used throughout
- the game consistently */
+/*
+variables used throughout
+the game consistently 
+*/
 var mountain_y;
 var canyons_y;
 
@@ -47,18 +44,21 @@ function setup()
 	gameChar_x = width/2;
 	gameChar_y = floorPos_y;
 
-	/* Variable to control the background scrolling. */
+	/*
+    Variable to control the background scrolling.
+    */
 	scrollPos = 0;
 
-	/* Boolean variables to control the 
+	/*
+    Boolean variables to control the 
 	movement of the game character 
 	*/
 	isLeft = false;
 	isRight = false;
     
-	/* initialise params that
-       are used throughout the game 
-       */
+	/*initialise params that
+    are used throughout the game 
+    */
 	mountain_y = 435;
 	canyons_y = 430;
 	canyons_width = 100;
@@ -68,12 +68,12 @@ function setup()
 	/*
 	clouds array
 	*/
-	clouds = [
-	{
-		x_pos: 250, 
-		y_pos: 150,
-            	width: 80, 
-            	height: 50
+    clouds = [
+        {
+		  x_pos: 250, 
+		  y_pos: 150,
+            width: 80, 
+            height: 50
         },
         {
             x_pos: 300,
@@ -365,13 +365,14 @@ function setup()
 
 function draw()
 {
-   
-	background('lightcyan');
+    background(224,255,255);
     
 	noStroke();
-	fill('lightseagreen');
+	fill(32,178,170);
     
-    /* ground */
+    /*
+    ground 
+    */
 	rect
     (
         0, 
@@ -383,29 +384,250 @@ function draw()
     push();
     translate(scrollPos, 0);
 
-	/*Draw clouds.*/
-    drawClouds();
+	/*
+    Draw clouds.
+    */
+    for (var i = 0; i < clouds.length; i++) 
+    {
+        fill(248,248,255);
+        noStroke();
+        
+        ellipse
+        (
+            clouds[i].x_pos, 
+            clouds[i].y_pos, 
+            clouds[i].width, 
+            clouds[i].height
+        );   
+    }
 
-	/*Draw mountains.*/
-    drawMountains();
+	/*
+    Draw mountains.
+    */
+     for (var i = 0; i < mountains.length; i++) 
+    {
+        noStroke();
+        fill(245,245,245);
+        
+        triangle
+        (
+            mountains[i].x_pos, 
+            mountains[i].y_pos, 
+            mountains[i].x_pos + 150, 
+            mountains[i].y_pos - 415,
+            mountains[i].x_pos + 350, mountains[i].y_pos
+        );
+    }   
 
-	/*Draw trees.*/
-    drawTrees();
+	/*
+    Draw trees.
+    */
+    for (var i = 0; i < trees.length; i++)
+    {
+        fill(238,232,170);
+        
+        rect
+        (
+            trees[i].treePos_x, 
+            treePos_y, 
+            50,
+            235
+        );
+        
+        fill(152,251,152);
+        
+        ellipse
+        (
+            trees[i].treePos_x + 20, 
+            treePos_y, treePos_y, 
+            treePos_y - 50
+        );
+    };
 
-	/*Draw canyons.*/
-    drawCanyons();
+	/*
+    Draw canyons.
+    */
+    for (var i = 0; i < canyons.length; i++)
+    {
+        fill(255,248,220);
+        
+        rect
+        (
+            canyons[i].x_pos, 
+            canyons[i].y_pos, 
+            canyons[i].width, 
+            canyons[i].width + 100
+        );
+    }
 
 	/*Draw collectable items.*/
-    drawCollectables()   
+    for (var i = 0; i < collectibles.length; i++)
+    {
+        stroke(0,128,128);
+        strokeWeight(collectibles[i].size + 15);
+    
+        point
+        (
+            collectibles[i].x_pos, 
+            collectibles[i].y_pos
+        );
+    
+        stroke(102,0,204);
+        strokeWeight(collectibles[i].size);
+        
+        point
+        (
+            collectibles[i].x_pos,
+            collectibles[i].y_pos
+        );
+        
+        stroke(255, 0, 0);
+        strokeWeight(collectibles[i].size + 10);
+        
+        point
+        (
+            collectibles[i].x_pos - 10,
+            collectibles[i].y_pos
+        );
+        
+        strokeWeight(5);
+        noStroke();
+        fill(135,206,235);
+    }  
     
     pop();
 
-	/*Draw game character.*/
-	drawGameChar();
+	/*
+    Draw game character.
+    */
+        
+    /*
+    head 
+    */
+    fill(176,224,230);
+    
+    ellipse
+    (
+        gameChar_x, 
+        gameChar_y - 62,
+        25, 
+        25
+    );
+        
+    /*eyes*/
+    stroke(0,204, 204);
+    strokeWeight(5);
+    
+    point
+    (
+        gameChar_x - 3, 
+        gameChar_y - 65
+    );
+    
+    point
+    (
+        gameChar_x + 3, 
+        gameChar_y - 65
+    );
+    
+    stroke(0, 0, 255);
+    strokeWeight(5);
+    
+    point
+    (
+        gameChar_x, 
+        gameChar_y - 55
+    );
+        
+    /*
+    body
+    */
+    strokeWeight(4);
+    fill(135,206,235);
+    
+    rect
+    (
+        gameChar_x - 12, 
+        gameChar_y - 47,
+        25, 
+        30
+    );
+        
+    /*
+    legs
+    */
+    beginShape(LINES);
+    
+    vertex
+    (
+        gameChar_x - 12, 
+        gameChar_y - 20
+    );
+    
+    vertex
+    (
+        gameChar_x - 12, 
+        gameChar_y
+    );
+    
+    endShape();
+        
+    beginShape(LINES);
+    
+    vertex
+    (
+        gameChar_x + 12, 
+        gameChar_y - 20
+    );
+    
+    vertex
+    (
+        gameChar_x + 12, 
+        gameChar_y
+    );
+    
+    endShape();
+        
+    /*
+    hands
+    */
+    beginShape(LINES);
+    
+    vertex
+    (
+        gameChar_x - 12, 
+        gameChar_y - 45
+    );
+    
+    vertex
+    (
+        gameChar_x - 25, 
+        gameChar_y - 35
+    );
+    
+    endShape();
+        
+    beginShape(LINES);
+    
+    vertex
+    (
+        gameChar_x + 12,
+        gameChar_y - 45
+    );
+    
+    vertex
+    (
+        gameChar_x + 25, 
+        gameChar_y - 35
+    );
+    
+    endShape();
 
 	//////// Game character logic ///////
 	
-    //Logic to move
+    /*
+    Logic to move
+    */
 
 	if(isLeft)
 	{
@@ -463,253 +685,4 @@ function keyReleased()
 	{
 		isRight = false;
 	}
-}
-
-// ------------------------------
-// Game character render function
-// ------------------------------
-
-/*Function to draw the game character.*/
-
-function drawGameChar()
-{
-    /*Standing, facing frontwards*/
-        
-    /*head */
-    fill('powderblue');
-    
-    ellipse
-    (
-        gameChar_x, 
-        gameChar_y - 62,
-        25, 
-        25
-    );
-        
-    /*eyes*/
-    stroke(0,204, 204);
-    strokeWeight(5);
-    
-    point
-    (
-        gameChar_x - 3, 
-        gameChar_y - 65
-    );
-    
-    point
-    (
-        gameChar_x + 3, 
-        gameChar_y - 65
-    );
-    
-    stroke(0, 0, 255);
-    strokeWeight(5);
-    
-    point
-    (
-        gameChar_x, 
-        gameChar_y - 55
-    );
-        
-    /*body */
-    strokeWeight(4);
-    fill('skyblue');
-    
-    rect
-    (
-        gameChar_x - 12, 
-        gameChar_y - 47,
-        25, 
-        30
-    );
-        
-    /*legs*/
-    beginShape(LINES);
-    
-    vertex
-    (
-        gameChar_x - 12, 
-        gameChar_y - 20
-    );
-    
-    vertex
-    (
-        gameChar_x - 12, 
-        gameChar_y
-    );
-    
-    endShape();
-        
-    beginShape(LINES);
-    
-    vertex
-    (
-        gameChar_x + 12, 
-        gameChar_y - 20
-    );
-    
-    vertex
-    (
-        gameChar_x + 12, 
-        gameChar_y
-    );
-    
-    endShape();
-        
-    /*hands */
-    beginShape(LINES);
-    
-    vertex
-    (
-        gameChar_x - 12, 
-        gameChar_y - 45
-    );
-    
-    vertex
-    (
-        gameChar_x - 25, 
-        gameChar_y - 35
-    );
-    
-    endShape();
-        
-    beginShape(LINES);
-    
-    vertex
-    (
-        gameChar_x + 12,
-        gameChar_y - 45
-    );
-    
-    vertex
-    (
-        gameChar_x + 25, 
-        gameChar_y - 35
-    );
-    
-    endShape();
-}
-
-// ---------------------------
-// Background render functions
-// ---------------------------
-
-/*Function to draw cloud objects.*/
-function drawClouds() 
-{
-    for (var i = 0; i < clouds.length; i++) 
-    {
-        fill('ghostwhite');
-        noStroke();
-        
-        ellipse
-        (
-            clouds[i].x_pos, 
-            clouds[i].y_pos, 
-            clouds[i].width, 
-            clouds[i].height
-        );   
-    }
-}
-
-/*Function to draw mountains objects.*/
-function drawMountains() 
-{
-    for (var i = 0; i < mountains.length; i++) 
-    {
-        noStroke();
-        fill('whitesmoke');
-        
-        triangle
-        (
-            mountains[i].x_pos, 
-            mountains[i].y_pos, 
-            mountains[i].x_pos + 150, 
-            mountains[i].y_pos - 415,
-            mountains[i].x_pos + 350, mountains[i].y_pos
-        );
-    }   
-}
-
-/*Function to draw trees objects.*/
-function drawTrees() 
-{
-    
-    for (var i = 0; i < trees.length; i++)
-    {
-        fill('palegoldenrod');
-        
-        rect
-        (
-            trees[i].treePos_x, 
-            treePos_y, 
-            50,
-            235
-        );
-        
-        fill('palegreen');
-        
-        ellipse
-        (
-            trees[i].treePos_x + 20, 
-            treePos_y, treePos_y, 
-            treePos_y - 50
-        );
-    }
-    
-}
-
-/*Function to draw canyon objects*/
-function drawCanyons()
-{
-    for (var i = 0; i < canyons.length; i++)
-    {
-        fill('cornsilk');
-        
-        rect
-        (
-            canyons[i].x_pos, 
-            canyons[i].y_pos, 
-            canyons[i].width, 
-            canyons[i].width + 100
-        );
-    }
-}
-
-/*Function to draw collectable items objects*/
-function drawCollectables()
-{
-    for (var i = 0; i < collectibles.length; i++)
-    {
-        stroke('teal');
-        strokeWeight(collectibles[i].size + 15);
-    
-        point
-        (
-            collectibles[i].x_pos, 
-            collectibles[i].y_pos
-        );
-    
-        stroke(102,0,204);
-        strokeWeight(collectibles[i].size);
-        
-        point
-        (
-            collectibles[i].x_pos,
-            collectibles[i].y_pos
-        );
-        
-        stroke(255, 0, 0);
-        strokeWeight(collectibles[i].size + 10);
-        
-        point
-        (
-            collectibles[i].x_pos - 10,
-            collectibles[i].y_pos
-        );
-        
-        strokeWeight(5);
-        noStroke();
-        fill('skyblue');
-    }
 }
