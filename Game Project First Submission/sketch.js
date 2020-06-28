@@ -51,28 +51,29 @@ function setup()
 	scrollPos = 0;
 
 	/* Boolean variables to control the 
-    movement of the game character */
+	movement of the game character 
+	*/
 	isLeft = false;
 	isRight = false;
     
-    /* initialise params that
-       are used throughout the game */
-    mountain_y = 435;
-    canyons_y = 430;
-    
-    canyons_width = 100;
-    collectibles_y = 430;
-    treePos_y = 200;
+	/* initialise params that
+       are used throughout the game 
+       */
+	mountain_y = 435;
+	canyons_y = 430;
+	canyons_width = 100;
+	collectibles_y = 430;
+	treePos_y = 200;
 
 	/*
-    clouds array
-    */
-    clouds = [
-        {
-            x_pos: 250, 
-            y_pos: 150,
-            width: 80, 
-            height: 50
+	clouds array
+	*/
+	clouds = [
+	{
+		x_pos: 250, 
+		y_pos: 150,
+            	width: 80, 
+            	height: 50
         },
         {
             x_pos: 300,
