@@ -21,21 +21,14 @@ game objects
 */
 var clouds;
 var mountains;
-var trees;
-
 var canyons;
 var collectibles;
 
 /*
-variables used throughout
-the game consistently 
+static positions 
 */
-var mountain_y;
-var canyons_y;
-
-var treePos_y;
+var treePos_y
 var canyons_width;
-var collectibles_y;
 
 function setup()
 {
@@ -56,22 +49,20 @@ function setup()
 	isLeft = false;
 	isRight = false;
     
-	/*initialise params that
-    are used throughout the game 
+    /*
+    initialise params that are used throughout the game 
+    (y postions that remain static due to their respective position to the ground)
     */
-	mountain_y = 435;
-	canyons_y = 430;
-	canyons_width = 100;
-	collectibles_y = 430;
-	treePos_y = 200;
-
+    canyons_width = 100;
+    treePos_y = 200;
+    
 	/*
-	clouds array
+	clouds array with clouds objects
 	*/
     clouds = [
         {
-		  x_pos: 250, 
-		  y_pos: 150,
+            x_pos: 250, 
+            y_pos: 150,
             width: 80, 
             height: 50
         },
@@ -192,117 +183,96 @@ function setup()
     ];
     
     /*
-    mountains array
+    mountains array with mountain objects
     */
     mountains = [
         {
             x_pos: 500, 
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 100, 
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 600,
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 850, 
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 1000, 
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: -800, 
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 2500, 
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 2200, 
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 1400, 
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 2800,
-            y_pos: mountain_y
+            y_pos: floorPos_y
         },
         {
             x_pos: 3900,
-            y_pos: mountain_y
+            y_pos: floorPos_y
         }
     ];
     
     /*
-    trees array
+    trees array consisting of various integers 
     */
-    trees = [
-        {
-            treePos_x: 45
-        }, 
-        {
-            treePos_x: -193
-        },
-        {
-            treePos_x: 750
-        },
-        {
-            treePos_x: 1747
-        },
-        {
-            treePos_x: 2072
-        },
-        {
-            treePos_x: - 745
-        },
-        {
-            treePos_x: 2800
-        },
-        {
-            treePos_x: 3300
-        }
+    trees_x = 
+    [
+        45, -193, 750, 1747, 2072, - 745, 2800, 3300
+    
     ];
     
     /*
-    canyons array
+    canyons array with canyon objects
     */
     canyons = [
         {
             x_pos: 550, 
-            y_pos: canyons_y, 
+            y_pos: floorPos_y, 
             width: canyons_width
         },
         {
             x_pos: 320, 
-            y_pos: canyons_y,
+            y_pos: floorPos_y,
             width: canyons_width
         },
         {
             x_pos: 1400,
-            y_pos: canyons_y,
+            y_pos: floorPos_y,
             width: canyons_width
         },
         {
             x_pos: 1900,
-            y_pos: canyons_y,
+            y_pos: floorPos_y,
             width: canyons_width
         },  
         {
             x_pos: -550, 
-            y_pos: canyons_y, 
+            y_pos: floorPos_y, 
             width: canyons_width
         },
         {
             x_pos: 3500,
-            y_pos: canyons_y,
+            y_pos: floorPos_y,
             width: canyons_width
         }
     ];
@@ -314,49 +284,49 @@ function setup()
         
         {
             x_pos: 450, 
-            y_pos: collectibles_y, 
+            y_pos: floorPos_y, 
             size: 5, 
             isFound: false
         },
         {
             x_pos: 750, 
-            y_pos: 430, 
+            y_pos: floorPos_y, 
             size: 6, 
             isFound: false
         },
         {
             x_pos: 950, 
-            y_pos: collectibles_y, 
+            y_pos: floorPos_y, 
             size: 4, 
             isFound: false
         },
         {
             x_pos: 1800, 
-            y_pos: collectibles_y, 
+            y_pos: floorPos_y, 
             size: 3, 
             isFound: false
         },
         {
             x_pos: 1200, 
-            y_pos: collectibles_y, 
+            y_pos: floorPos_y, 
             size: 4, 
             isFound: false
         },
         {
             x_pos: 2200, 
-            y_pos: collectibles_y, 
+            y_pos: floorPos_y, 
             size: 4, 
             isFound: false
         },
         {
             x_pos: -650, 
-            y_pos: collectibles_y, 
+            y_pos: floorPos_y, 
             size: 3, 
             isFound: false
         },
         {
             x_pos: 2950, 
-            y_pos: collectibles_y, 
+            y_pos: floorPos_y, 
             size: 2, 
             isFound: false
         }
@@ -400,11 +370,11 @@ function draw()
             clouds[i].height
         );   
     }
-
+    
 	/*
     Draw mountains.
     */
-     for (var i = 0; i < mountains.length; i++) 
+    for (var i = 0; i < mountains.length; i++) 
     {
         noStroke();
         fill(245,245,245);
@@ -422,13 +392,13 @@ function draw()
 	/*
     Draw trees.
     */
-    for (var i = 0; i < trees.length; i++)
+    for (var i = 0; i < trees_x.length; i++)
     {
         fill(238,232,170);
         
         rect
         (
-            trees[i].treePos_x, 
+            trees_x[i], 
             treePos_y, 
             50,
             235
@@ -438,7 +408,7 @@ function draw()
         
         ellipse
         (
-            trees[i].treePos_x + 20, 
+            trees_x[i] + 20, 
             treePos_y, treePos_y, 
             treePos_y - 50
         );
@@ -514,7 +484,9 @@ function draw()
         25
     );
         
-    /*eyes*/
+    /*
+    eyes
+    */
     stroke(0,204, 204);
     strokeWeight(5);
     
