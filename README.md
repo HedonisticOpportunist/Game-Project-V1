@@ -1,3 +1,5 @@
 # game_project_first_submission
 
-A sidescroller written for Introduction to programming I 2019/2020 (UoL). 
+A sidescroller written for Introduction to Programming I 2019/2020 (UoL). 
+
+https://london.ac.uk/courses/introduction-programming-i
