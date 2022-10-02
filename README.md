@@ -1,9 +1,9 @@
 # game_project_first_submission
 
-A sidescroller written for Introduction to Programming I 2019/2020 (UoL). 
+A sidebar scroll game written for Introduction to Programming I 2019/2020 (University of London).
 
 https://london.ac.uk/courses/introduction-programming-i
 
-URL: 
+URL:
 
 https://hedonisticopportunist.github.io/game_project_v1/
